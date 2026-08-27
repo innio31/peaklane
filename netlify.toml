@@ -1,0 +1,29 @@
+# Netlify configuration for peaklane.acad.com.ng
+# ------------------------------------------------------------
+# This site is a set of static files (no build step needed).
+# Deploy the contents of this folder as-is (publish directory = ".").
+
+[build]
+  publish = "."
+
+# Fallback: anything not found on this Netlify site redirects
+# back to the main acad.com.ng install, per the requested pattern
+# (peaklane.acad.com.ng/anything-unknown -> acad.com.ng/plms/web/anything-unknown)
+[[redirects]]
+  from = "/*"
+  to = "https://acad.com.ng/plms/web/:splat"
+  status = 404
+  force = false
+
+# Security / caching headers
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
