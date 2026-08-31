@@ -1,0 +1,241 @@
+/* PLMS Portal — visual identity taken directly from the school's own colors
+   (navy #000080 / red / white) rather than a generic app-blue default.
+   System font stack on purpose: it loads instantly offline in a PWA, which
+   matters more here than a custom webfont would. */
+
+:root {
+  --navy: #0A0A3C;
+  --navy-deep: #05051F;
+  --red: #E4172B;
+  --paper: #F7F7FA;
+  --ink: #14141F;
+  --line: rgba(10, 10, 60, 0.12);
+  --radius: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-tap-highlight-color: transparent;
+}
+button { font: inherit; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+/* ---------- Launch screen ---------- */
+.launch {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+}
+.launch-mark {
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.launch-bar {
+  width: 120px;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.launch-bar span {
+  display: block;
+  width: 40%;
+  height: 100%;
+  background: var(--red);
+  animation: slide 1.1s ease-in-out infinite;
+}
+@keyframes slide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(340%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .launch-bar span { animation: none; width: 100%; }
+}
+
+/* ---------- Login ---------- */
+.login-screen {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+}
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  background: white;
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+}
+.login-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--navy);
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+.login-card h1 {
+  font-size: 20px;
+  line-height: 1.3;
+  margin: 0 0 20px;
+  max-width: 26ch;
+}
+.role-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  background: var(--paper);
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+.role-tab {
+  border: none;
+  background: transparent;
+  padding: 8px 4px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b6b7d;
+  cursor: pointer;
+}
+.role-tab.active {
+  background: var(--navy);
+  color: white;
+}
+form { display: flex; flex-direction: column; gap: 14px; }
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b4b5c;
+}
+input {
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: var(--ink);
+}
+input:focus { border-color: var(--navy); }
+.login-error {
+  background: #FDECEC;
+  color: #B3121F;
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+.login-submit {
+  margin-top: 6px;
+  background: var(--red);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.login-submit:disabled { opacity: 0.6; }
+.login-note {
+  text-align: center;
+  font-size: 12px;
+  color: #8a8a99;
+  margin: 18px 0 0;
+}
+
+/* ---------- App shell ---------- */
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.app-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: max(20px, env(safe-area-inset-top)) 20px 16px;
+  background: var(--navy);
+  color: white;
+  border-radius: 0 0 20px 20px;
+}
+.app-header-eyebrow {
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 4px;
+}
+.app-header h1 { margin: 0; font-size: 22px; }
+.icon-btn {
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: white;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.app-content {
+  flex: 1;
+  padding: 20px;
+  padding-bottom: 90px;
+}
+.proof-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.proof-card-title {
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.proof-card p { margin: 0; line-height: 1.55; color: #3c3c4a; font-size: 14px; }
+.proof-card code {
+  background: var(--paper);
+  padding: 1px 5px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.app-tabbar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  padding: 8px 12px max(8px, env(safe-area-inset-bottom));
+  background: white;
+  border-top: 1px solid var(--line);
+}
+.tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9a9aa8;
+  border-radius: 10px;
+}
+.tab.active { color: var(--navy); background: var(--paper); }
